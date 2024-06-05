@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>祝福中考学子</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto:wght@300;400;700&display=swap');
+        body {
+            background-image: url('https://img0.baidu.com/it/u=1919468379,2785957446&fm=253&fmt=auto&app=138&f=JPEG?w=1422&h=800');
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        #form {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 50px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        h1 {
+            color: #f9ca24;
+            font-family: 'Quicksand', sans-serif;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #f9ca24, 0 0 20px #f9ca24, 0 0 30px #f9ca24, 0 0 40px #f9ca24;
+            }
+            to {
+                text-shadow: 0 0 20px #f9ca24, 0 0 30px #f9ca24, 0 0 40px #f9ca24, 0 0 50px #f9ca24, 0 0 60px #f9ca24;
+            }
+        }
+        input {
+            margin: 15px 0;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            background-color: transparent;
+            color: red;
+            font-size: 1em;
+        }
+        button {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: red;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ae614c;
+        }
+        #wishText {
+            font-size: 1.2em;
+            font-weight: bold;
+            display: none;
+        }
+        #wishText.show {
+            display: block;
+            animation: fade-in 1s;
+        }
+        @keyframes fade-in {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        body {
+            transition: background-image 0.5s ease; /* 添加这个 */
+        }
+        #popupsContainer {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: none; /* 初始时隐藏 */
+        }
+        @keyframes popup-animation {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .popup {
+            position: absolute;
+            padding: 20px;
+            background-color:#ffd700; /* 弹窗的背景颜色 */
+            font-size: 1.2em; /* 调整字体大小 */
+            display: flex; /* 下面三行代码居中文本 */
+            justify-content: center;
+            align-items: center;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+            border: 3px solid #b8860b; /* 添加边框 */
+            border-radius: 10px; /* 圆角弹窗 */
+            cursor: pointer;
+            animation: popup-animation 0.5s ease;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="popupsContainer"></div>
+
+    <audio id="backgroundMusic" src="你的音频文件的URL" autoplay loop></audio>
+    <div id="form">
+        <h1>祝福你中考成功！</h1>
+        <input type="text" id="nameInput" placeholder="请输入你的名字" />
+        <button onclick="wish()">祝福我</button>
+        <p id="wishText"></p>
+    </div>
+    <div id="modal" style="display: none; position: fixed; left: 0; top: 5%; width: 100%; height: 100%; z-index: 9999; background: rgba(0,0,0,0.5);">
+        <div style="position: relative; width: 80%; max-width: 720px; margin: auto; padding: 20px; background:red; border-radius: 4px;">
+        <p id="modalText">小越同学，还没结束哟！</p>
+        <button id= "continueButton" onclick="continueClick()">点击继续</button>
+        <p id="inspiration" style="display: none;"></p>
+    </div>
+    </div>
+    <script>
+        function wish() {
+            var name = document.getElementById('nameInput').value;
+            var wishText = document.getElementById('wishText');
+            wishText.innerText = "祝" + name + "同学，中考顺利，取得理想的成绩！";
+            wishText.classList.add('show');
+            document.getElementById('nameInput').value = '';
+
+            setTimeout(function() {
+                // var modalText = document.getElementById('modalText');
+                // modalText.innerHTML = name + "同学，还没结束哟！";
+                document.getElementById('modal').style.display='block';
+          }, 3000);
+        }
+        function continueClick() {
+            document.getElementById('modalText').style.display = 'none';
+            document.getElementById('inspiration').style.display = 'block';
+            var text = "当你走进考场的时候，你不必去思考你能考上哪个学校。在你跨进中考考场的那一刻，你已经成功了一大半。这是你中学生涯的最后一场考试，用平常的心态去面对它，顺利的完成它，这就已经很棒了。加油，等你凯旋！";
+            var i = 0;
+            var button = document.getElementById("continueButton");
+            button.innerHTML = '小越，中考加油！';
+            button.onclick = function() {
+            document.getElementById('form').style.display = 'none';
+            document.getElementById('modal').style.display='none';
+            document.body.style.backgroundImage = "url('https://t9.baidu.com/it/u=2386389137,2493484217&fm=193')";
+
+    var popupsContainer = document.getElementById('popupsContainer');
+    popupsContainer.style.display = 'block';
+
+    var wishes = [ "金榜题名", "一举夺魁", "乘风破浪", "一帆风顺", "前程似锦", "才华横溢", "硕果累累", "成绩斐然", "马到成功", "全力以赴", "心想事成", "中考顺利", "榜上有名", "决胜中考", "凯旋而归", "勇夺三军", "学业有成"];
+    setInterval(function() { // 每隔50ms运行一次
+        var wishPopup = document.createElement("div");
+        wishPopup.className = "popup";
+        wishPopup.textContent = wishes[Math.floor(Math.random() * wishes.length)]; // 随机选择一句祝福
+        wishPopup.style.left = Math.random() * 100 + "%"; // 随机位置
+        wishPopup.style.top = Math.random() * 100 + "%"; // 随机位置
+        popupsContainer.appendChild(wishPopup);
+        setTimeout(function() { // 4秒后移除弹窗
+        popupsContainer.removeChild(wishPopup);
+    }, 4000);
+    }, 88);
+            }
+        function typeWriter() {
+            if (i < text.length) {
+            document.getElementById('inspiration').innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 100);
+            }
+        }
+        typeWriter();
+        }
+    </script>
+</body>
+</html>
